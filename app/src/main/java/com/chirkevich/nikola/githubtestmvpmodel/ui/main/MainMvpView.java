@@ -1,6 +1,7 @@
 package com.chirkevich.nikola.githubtestmvpmodel.ui.main;
 
 
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.User;
@@ -13,6 +14,6 @@ import java.util.List;
  */
 
 public interface MainMvpView extends MvpView {
-    void updateRespositories(List<Repository> repositories);
-    void setUserName(UserResponse userResponse);
+    void updateRespositories(List<RepositrotyResponse> repositories);
+    void setUserName(UserResponse listUserResponse);
 }

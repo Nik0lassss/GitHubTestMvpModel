@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chirkevich.nikola.githubtestmvpmodel.R;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.ui.base.BaseViewHolder;
@@ -29,15 +31,14 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback callback;
-    private List<Repository> repositories;
+    private List<RepositrotyResponse> repositories;
 
 
-    public MainAdapter(List<Repository> repositories) {
+    public MainAdapter(List<RepositrotyResponse> repositories) {
         this.repositories = repositories;
     }
 
-    public void setCallback(Callback callback)
-    {
+    public void setCallback(Callback callback) {
         this.callback = callback;
     }
 
@@ -78,14 +79,12 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addItems(List<Repository> repositories)
-    {
+    public void addItems(List<RepositrotyResponse> repositories) {
         this.repositories.addAll(repositories);
         notifyDataSetChanged();
     }
 
-    public interface Callback
-    {
+    public interface Callback {
         void onUsersEmptyViewRetryClick();
     }
 
@@ -119,10 +118,18 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         public void onBind(int position) {
             super.onBind(position);
-            final Repository user = repositories.get(position);
-            titleTextView.setText(String.valueOf(user.fullName));
-            if (user.description != null) {
-                authorTextView.setText(user.description);
+            final RepositrotyResponse repositrotyResponse = repositories.get(position);
+            titleTextView.setText(String.valueOf(repositrotyResponse.getUrl()));
+
+            if (repositrotyResponse.getOwner().getAvatarUrl() != null) {
+                Glide.with(itemView.getContext())
+                        .load(repositrotyResponse.getOwner().getAvatarUrl())
+                        .asBitmap()
+                        .centerCrop()
+                        .into(coverImageView);
+            }
+            if (repositrotyResponse.getFullName() != null) {
+                authorTextView.setText(repositrotyResponse.getFullName());
             }
         }
     }

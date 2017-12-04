@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.chirkevich.nikola.githubtestmvpmodel.R;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
@@ -123,9 +124,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         super.onDestroy();
     }
 
+
     @Override
-    public void updateRespositories(List<Repository> repositories) {
-            mMainAdapter.addItems(repositories);
+    public void updateRespositories(List<RepositrotyResponse> repositories) {
+        mMainAdapter.addItems(repositories);
     }
 
     @Override

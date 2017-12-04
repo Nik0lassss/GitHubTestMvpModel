@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.di.ActivityContext;
@@ -68,7 +69,7 @@ public class ActivityModule {
     @Provides
     MainAdapter provideMainAdapter()
     {
-        return new MainAdapter(new ArrayList<Repository>());
+        return new MainAdapter(new ArrayList<RepositrotyResponse>());
     }
 
     @Provides

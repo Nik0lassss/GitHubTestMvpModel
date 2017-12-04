@@ -11,4 +11,7 @@ public class ApiEndPoint {
     public static final String ENDPOINT_GIT_HUB_USER = BuildConfig.BASE_URL + "/users"
             + "/{userId}";
 
+    public static final String ENDPOINT_GIT_HUB_USER_REPOSITORIES = BuildConfig.BASE_URL + "/users"
+            + "/{userId}/repos";
+
 }

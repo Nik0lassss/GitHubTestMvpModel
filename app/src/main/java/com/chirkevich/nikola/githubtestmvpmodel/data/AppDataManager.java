@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.chirkevich.nikola.githubtestmvpmodel.data.DataManager;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.db.DbHelper;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserRequest;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
@@ -67,5 +68,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<UserResponse> doGitHubGetUserCall(UserRequest.GitHubLoginRequest request) {
         return mApiHelper.doGitHubGetUserCall(request);
+    }
+
+    @Override
+    public Observable<List<RepositrotyResponse>> doGitHubGetUserRepositoriesCall(UserRequest.GitHubGetUserRepositoriesRequest request) {
+        return mApiHelper.doGitHubGetUserRepositoriesCall(request);
     }
 }

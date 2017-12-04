@@ -1,6 +1,7 @@
 package com.chirkevich.nikola.githubtestmvpmodel.ui.main;
 
 import com.chirkevich.nikola.githubtestmvpmodel.data.DataManager;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserRequest;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.User;
@@ -49,6 +50,22 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
                     }
                 }));
+
+        getMvpView().showLoading();
+        getCompositeDisposable().add(getDataManager().doGitHubGetUserRepositoriesCall(new UserRequest.GitHubGetUserRepositoriesRequest("nik0lassss")).subscribeOn(getSchedulerProvider().io()).observeOn(getSchedulerProvider().ui()).subscribe(new Consumer<List<RepositrotyResponse>>() {
+            @Override
+            public void accept(List<RepositrotyResponse> repositrotyResponses) throws Exception {
+                getMvpView().updateRespositories(repositrotyResponses);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                if (!isViewAttached()) {
+                    return;
+                }
+                getMvpView().hideLoading();
+            }
+        }));
 
     }
 }

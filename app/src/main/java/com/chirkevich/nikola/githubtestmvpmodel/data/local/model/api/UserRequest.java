@@ -33,4 +33,23 @@ public class UserRequest {
         }
     }
 
+    public static class GitHubGetUserRepositoriesRequest
+    {
+        @Expose
+        @SerializedName("userId")
+        private String userLogin;
+
+        public GitHubGetUserRepositoriesRequest(String userLogin) {
+            this.userLogin = userLogin;
+        }
+
+        public String getUserLogin() {
+            return userLogin;
+        }
+
+        public void setUserLogin(String userLogin) {
+            this.userLogin = userLogin;
+        }
+    }
+
 }
