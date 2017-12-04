@@ -1,7 +1,5 @@
 package com.chirkevich.nikola.githubtestmvpmodel.ui.main;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chirkevich.nikola.githubtestmvpmodel.R;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.ui.base.BaseViewHolder;
 
@@ -30,11 +29,11 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback callback;
-    private List<User> userList;
+    private List<Repository> repositories;
 
 
-    public MainAdapter(List<User> userList) {
-        this.userList = userList;
+    public MainAdapter(List<Repository> repositories) {
+        this.repositories = repositories;
     }
 
     public void setCallback(Callback callback)
@@ -63,8 +62,8 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (userList != null && userList.size() > 0) {
-            return userList.size();
+        if (repositories != null && repositories.size() > 0) {
+            return repositories.size();
         } else {
             return 1;
         }
@@ -72,16 +71,16 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (userList != null && userList.size() > 0) {
+        if (repositories != null && repositories.size() > 0) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_EMPTY;
         }
     }
 
-    public void addItems(List<User> users)
+    public void addItems(List<Repository> repositories)
     {
-        userList.addAll(users);
+        this.repositories.addAll(repositories);
         notifyDataSetChanged();
     }
 
@@ -120,10 +119,10 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         public void onBind(int position) {
             super.onBind(position);
-            final User user = userList.get(position);
-            titleTextView.setText(String.valueOf(user.getId()));
-            if (user.getName() != null) {
-                authorTextView.setText(user.getName());
+            final Repository user = repositories.get(position);
+            titleTextView.setText(String.valueOf(user.fullName));
+            if (user.description != null) {
+                authorTextView.setText(user.description);
             }
         }
     }

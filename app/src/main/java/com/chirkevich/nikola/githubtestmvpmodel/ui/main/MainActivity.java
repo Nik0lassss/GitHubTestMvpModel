@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.chirkevich.nikola.githubtestmvpmodel.R;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.ui.base.BaseActivity;
 
@@ -29,6 +32,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @BindView(R.id.users_recycler_view)
     RecyclerView usersRecyclerView;
+
+    @BindView(R.id.user_name)
+    TextView userNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +106,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     }
 
-    @Override
-    public void updateUsers(List<User> users) {
-
-        mMainAdapter.addItems(users);
-    }
 
     @Override
     public void onFragmentAttached() {
@@ -120,5 +121,15 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public void updateRespositories(List<Repository> repositories) {
+            mMainAdapter.addItems(repositories);
+    }
+
+    @Override
+    public void setUserName(UserResponse userResponse) {
+        userNameTextView.setText(userResponse.getLogin());
     }
 }

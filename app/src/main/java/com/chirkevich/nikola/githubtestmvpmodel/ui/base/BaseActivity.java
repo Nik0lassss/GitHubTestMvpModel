@@ -9,8 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.chirkevich.nikola.githubtestmvpmodel.app.App;
 import com.chirkevich.nikola.githubtestmvpmodel.di.component.ActivityComponent;
+
+
 import com.chirkevich.nikola.githubtestmvpmodel.di.component.DaggerActivityComponent;
-import com.chirkevich.nikola.githubtestmvpmodel.di.component.DaggerApplicationComponent;
 import com.chirkevich.nikola.githubtestmvpmodel.di.module.ActivityModule;
 
 import butterknife.Unbinder;

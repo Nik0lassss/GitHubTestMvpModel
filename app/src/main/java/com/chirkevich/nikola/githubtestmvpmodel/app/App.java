@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.chirkevich.nikola.githubtestmvpmodel.data.DataManager;
 import com.chirkevich.nikola.githubtestmvpmodel.di.component.ApplicationComponent;
+
 import com.chirkevich.nikola.githubtestmvpmodel.di.component.DaggerApplicationComponent;
 import com.chirkevich.nikola.githubtestmvpmodel.di.module.ApplicationModule;
 

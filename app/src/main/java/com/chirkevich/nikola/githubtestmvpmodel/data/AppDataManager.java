@@ -3,6 +3,11 @@ package com.chirkevich.nikola.githubtestmvpmodel.data;
 import android.content.Context;
 
 import com.chirkevich.nikola.githubtestmvpmodel.data.DataManager;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.db.DbHelper;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserRequest;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
+import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
+import com.chirkevich.nikola.githubtestmvpmodel.data.remote.ApiHelper;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.helper.DbHelperTest;
 import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.di.ApplicationContext;
@@ -23,12 +28,14 @@ public class AppDataManager implements DataManager {
 
     private static String TAG = "AppDataManager";
     private Context context;
-    private DbHelperTest dbHelperTest;
+    private final DbHelper dbHelper;
+    private final ApiHelper mApiHelper;
 
     @Inject
-    public AppDataManager(@ApplicationContext Context context, DbHelperTest dbHelperTest) {
+    public AppDataManager(@ApplicationContext Context context, DbHelper dbHelper, ApiHelper apiHelper) {
         this.context = context;
-        this.dbHelperTest = dbHelperTest;
+        this.dbHelper = dbHelper;
+        this.mApiHelper = apiHelper;
     }
 
     @Override
@@ -37,7 +44,28 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<List<User>> getAllUsers() {
-        return dbHelperTest.getAllUsers();
+    public Observable<Boolean> insertUser(com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.User user) {
+        return null;
+    }
+
+    @Override
+    public Observable<List<com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.User>> getAllUsers() {
+        return null;
+    }
+
+    @Override
+    public Observable<List<Repository>> getAllRepositories() {
+        return null;
+    }
+
+    @Override
+    public Observable<Boolean> saveRepository(Repository repository) {
+        return null;
+    }
+
+
+    @Override
+    public Observable<UserResponse> doGitHubGetUserCall(UserRequest.GitHubLoginRequest request) {
+        return mApiHelper.doGitHubGetUserCall(request);
     }
 }
