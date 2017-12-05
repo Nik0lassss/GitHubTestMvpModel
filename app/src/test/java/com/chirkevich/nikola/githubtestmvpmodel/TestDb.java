@@ -19,9 +19,15 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestDb {
 
+
     @Test
     public void getUser_isCorrect() throws Exception {
+
+
+
         AppDbHelperTest appDbHelperTest = new AppDbHelperTest();
+
+
         appDbHelperTest.getAllUsers().subscribe(new Observer<List<User>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -31,8 +37,7 @@ public class TestDb {
             @Override
             public void onNext(List<User> users) {
                 assertNotNull(users);
-                for (User user : users)
-                {
+                for (User user : users) {
                     assertNotNull(user.getId());
                     assertNotNull(user.getName());
                 }

@@ -9,8 +9,6 @@ import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserRequest
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.remote.ApiHelper;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.helper.DbHelperTest;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.di.ApplicationContext;
 
 import java.util.List;
@@ -61,7 +59,7 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Observable<Boolean> saveRepository(Repository repository) {
-        return null;
+        return dbHelper.saveRepository(repository);
     }
 
 

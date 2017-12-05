@@ -5,8 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
-import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
+
 import com.chirkevich.nikola.githubtestmvpmodel.di.ActivityContext;
 import com.chirkevich.nikola.githubtestmvpmodel.di.PerActivity;
 import com.chirkevich.nikola.githubtestmvpmodel.ui.main.MainAdapter;

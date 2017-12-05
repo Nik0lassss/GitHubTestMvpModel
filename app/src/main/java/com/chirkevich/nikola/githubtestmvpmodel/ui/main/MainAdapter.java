@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.chirkevich.nikola.githubtestmvpmodel.R;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
-import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
 import com.chirkevich.nikola.githubtestmvpmodel.ui.base.BaseViewHolder;
 
 import java.util.List;

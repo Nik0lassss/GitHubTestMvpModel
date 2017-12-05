@@ -3,8 +3,7 @@ package com.chirkevich.nikola.githubtestmvpmodel.data;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.db.DbHelper;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.db.Repository;
 import com.chirkevich.nikola.githubtestmvpmodel.data.remote.ApiHelper;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.helper.DbHelperTest;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.model.User;
+
 
 import java.util.List;
 
