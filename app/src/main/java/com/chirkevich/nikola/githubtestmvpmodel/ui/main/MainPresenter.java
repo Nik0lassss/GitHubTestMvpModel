@@ -24,7 +24,7 @@ import io.reactivex.functions.Consumer;
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-    private static final String TAG = MainPresenter.class.getSimpleName();
+    private static final String TAG = MainPresenter.class.getName();
 
     @Inject
     public MainPresenter(DataManager dataManager,
@@ -60,13 +60,18 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         getCompositeDisposable().add(getDataManager().doGitHubGetUserRepositoriesCall(new UserRequest.GitHubGetUserRepositoriesRequest("nik0lassss")).subscribeOn(getSchedulerProvider().io()).observeOn(getSchedulerProvider().ui()).subscribe(new Consumer<List<RepositrotyResponse>>() {
             @Override
             public void accept(List<RepositrotyResponse> repositrotyResponses) throws Exception {
-                try {
-                    for (RepositrotyResponse repositrotyResponse : repositrotyResponses)
-                        getDataManager().saveRepository(RepositoryResponseMapper.mapRepositoryResponseToRepository(repositrotyResponse));
-                }catch (Exception e)
-                {
-                    Log.e(TAG,e.getMessage());
-                }
+                for (RepositrotyResponse repositrotyResponse : repositrotyResponses)
+                    getDataManager().saveRepository(RepositoryResponseMapper.mapRepositoryResponseToRepository(repositrotyResponse)).subscribeOn(getSchedulerProvider().io()).observeOn(getSchedulerProvider().ui()).subscribe(new Consumer<Boolean>() {
+                        @Override
+                        public void accept(Boolean aBoolean) throws Exception {
+                            Log.d(TAG, aBoolean.toString());
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            Log.d(TAG, throwable.getMessage());
+                        }
+                    });
                 getMvpView().updateRespositories(repositrotyResponses);
             }
         }, new Consumer<Throwable>() {

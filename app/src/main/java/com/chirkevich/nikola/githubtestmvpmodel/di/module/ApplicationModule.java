@@ -11,8 +11,7 @@ import com.chirkevich.nikola.githubtestmvpmodel.data.local.db.AppDbHelper;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.db.DbHelper;
 import com.chirkevich.nikola.githubtestmvpmodel.data.remote.ApiHelper;
 import com.chirkevich.nikola.githubtestmvpmodel.data.remote.AppApiHelper;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.helper.AppDbHelperTest;
-import com.chirkevich.nikola.githubtestmvpmodel.data.test.db.helper.DbHelperTest;
+
 import com.chirkevich.nikola.githubtestmvpmodel.di.ApplicationContext;
 import com.chirkevich.nikola.githubtestmvpmodel.di.DatabaseInfo;
 import com.chirkevich.nikola.githubtestmvpmodel.utils.AppConstants;
