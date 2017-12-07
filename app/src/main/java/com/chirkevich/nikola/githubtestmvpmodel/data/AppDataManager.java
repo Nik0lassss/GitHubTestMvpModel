@@ -61,7 +61,7 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Observable<Boolean> saveRepository(Repository repository) {
-        return null;
+        return dbHelper.saveRepository(repository);
     }
 
 

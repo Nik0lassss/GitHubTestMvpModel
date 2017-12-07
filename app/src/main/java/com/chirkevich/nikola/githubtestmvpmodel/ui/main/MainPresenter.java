@@ -1,5 +1,7 @@
 package com.chirkevich.nikola.githubtestmvpmodel.ui.main;
 
+import android.util.Log;
+
 import com.chirkevich.nikola.githubtestmvpmodel.data.DataManager;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.RepositrotyResponse;
 import com.chirkevich.nikola.githubtestmvpmodel.data.local.model.api.UserRequest;
@@ -21,6 +23,8 @@ import io.reactivex.functions.Consumer;
  */
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
+
+    private static final String TAG = MainPresenter.class.getSimpleName();
 
     @Inject
     public MainPresenter(DataManager dataManager,
@@ -56,8 +60,13 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         getCompositeDisposable().add(getDataManager().doGitHubGetUserRepositoriesCall(new UserRequest.GitHubGetUserRepositoriesRequest("nik0lassss")).subscribeOn(getSchedulerProvider().io()).observeOn(getSchedulerProvider().ui()).subscribe(new Consumer<List<RepositrotyResponse>>() {
             @Override
             public void accept(List<RepositrotyResponse> repositrotyResponses) throws Exception {
-                for (RepositrotyResponse repositrotyResponse : repositrotyResponses)
-                    getDataManager().saveRepository(RepositoryResponseMapper.mapRepositoryResponseToRepository(repositrotyResponse));
+                try {
+                    for (RepositrotyResponse repositrotyResponse : repositrotyResponses)
+                        getDataManager().saveRepository(RepositoryResponseMapper.mapRepositoryResponseToRepository(repositrotyResponse));
+                }catch (Exception e)
+                {
+                    Log.e(TAG,e.getMessage());
+                }
                 getMvpView().updateRespositories(repositrotyResponses);
             }
         }, new Consumer<Throwable>() {
