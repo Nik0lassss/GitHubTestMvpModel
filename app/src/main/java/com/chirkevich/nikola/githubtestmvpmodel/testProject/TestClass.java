@@ -6,4 +6,5 @@ package com.chirkevich.nikola.githubtestmvpmodel.testProject;
 
 public class TestClass {
     private int a;
+
 }
