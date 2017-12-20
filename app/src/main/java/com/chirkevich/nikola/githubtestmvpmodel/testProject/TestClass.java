@@ -5,5 +5,6 @@ package com.chirkevich.nikola.githubtestmvpmodel.testProject;
  */
 
 public class TestClass {
-    private int a;
+    private int aMaster;
+    private int aMaster2;
 }
